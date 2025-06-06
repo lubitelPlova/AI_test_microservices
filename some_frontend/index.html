@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учебный Проект - Личный кабинет</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Стили аутентификации */
+        .auth-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .auth-header h2 {
+            color: var(--secondary);
+        }
+        
+        .auth-form input {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .auth-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .auth-form button:hover {
+            background-color: #2980b9;
+        }
+        
+        .switch-form {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .switch-form a {
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Стили личного кабинета */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .tab:hover:not(.active) {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .tab-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            min-height: 400px;
+        }
+        
+        .section-title {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            color: var(--secondary);
+        }
+        
+        /* Стили для карточек */
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .card-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark);
+            margin-left: 10px;
+        }
+        
+        .card-actions button:hover {
+            color: var(--primary);
+        }
+        
+        /* Формы и кнопки */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #1a252f;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #219653;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .file-upload {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-upload-btn {
+            background-color: var(--light);
+            border: 1px dashed #ddd;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--dark);
+            width: 100%;
+            display: block;
+        }
+        
+        .file-upload-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .digitized-text {
+    white-space: pre-wrap;       /* Сохраняет пробелы и переносы */
+    word-wrap: break-word;       /* Переносит длинные слова */
+    overflow-wrap: break-word;   /* Современный стандарт переноса слов */
+    max-height: 500px;           /* Максимальная высота блока */
+    overflow-y: auto;            /* Вертикальная прокрутка при необходимости */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+        
+        /* Вспомогательные классы */
+        .mt-3 { margin-top: 15px; }
+        .mt-4 { margin-top: 20px; }
+        .mb-3 { margin-bottom: 15px; }
+        .mb-4 { margin-bottom: 20px; }
+        .d-flex { display: flex; }
+        .align-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 10px; }
+        
+        /* Результаты и уведомления */
+        .result-container {
+            background-color: var(--light);
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .result-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .notification {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .notification.success {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+        
+        .notification.error {
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+        
+        /* Конструктор тестов */
+        .question-item {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .answer-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .answer-item input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+        }
+        
+        .answer-item .form-control {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Секция аутентификации -->
+    <div id="auth-section" class="container">
+        <div class="auth-container">
+            <!-- Форма входа -->
+            <div id="login-form">
+                <div class="auth-header">
+                    <h2>Авторизация</h2>
+                </div>
+                <div class="auth-form">
+                    <input type="text" id="email" placeholder="Email" required>
+                    <input type="password" id="password" placeholder="Пароль" required>
+                    <button onclick="login()">Войти</button>
+                </div>
+                <div class="switch-form">
+                    Нет аккаунта? <a onclick="showRegisterForm()">Зарегистрироваться</a>
+                </div>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div id="register-form" class="hidden">
+                <div class="auth-header">
+                    <h2>Регистрация</h2>
+                </div>
+                <div class="auth-form">
+                    <input type="email" id="reg-email" placeholder="Email" required>
+                    <input type="password" id="reg-password" placeholder="Пароль" required>
+                    <input type="password" id="reg-confirm-password" placeholder="Подтвердите пароль" required>
+                    <button onclick="register()">Зарегистрироваться</button>
+                </div>
+                <div class="switch-form">
+                    Уже есть аккаунт? <a onclick="showLoginForm()">Войти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Личный кабинет -->
+    <div id="dashboard" class="container hidden">
+        <div class="dashboard-header">
+            <div class="user-info">
+                <div class="avatar" id="user-avatar">U</div>
+                <div>
+                    <h2 id="user-name">Пользователь</h2>
+                    <div id="user-email">user@example.com</div>
+                </div>
+            </div>
+            <button onclick="logout()" class="btn btn-danger">Выйти</button>
+        </div>
+
+        <!-- Навигация -->
+        <div class="tabs">
+            <div class="tab active" data-tab="digitize">Оцифровка текста</div>
+            <div class="tab" data-tab="tests">Список тестов</div>
+            <div class="tab" data-tab="builder">Конструктор тестов</div>
+            <div class="tab" data-tab="generate">Генерация теста из текста</div>
+        </div>
+
+        <!-- Контент табов -->
+        <div class="tab-content">
+            <!-- Оцифровка текста -->
+            <div id="digitize-tab" class="tab-pane active">
+                <h3 class="section-title">Оцифровка текста</h3>
+                <div class="form-group">
+                    <label for="file-input">Загрузите файл для оцифровки</label>
+                    <div class="file-upload">
+                        <div class="file-upload-btn">
+                            <span id="file-name">Выберите файл (PDF, DOC, JPG, PNG)</span>
+                        </div>
+                        <input type="file" id="file-input" class="file-upload-input" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="digitize()">Оцифровать</button>
+                
+                <div class="result-container mt-4">
+                    <div class="result-title">Результат оцифровки:</div>
+                    <div id="digitized-result" class="mt-3"></div>
+                </div>
+            </div>
+
+            <!-- Список тестов -->
+            <div id="tests-tab" class="tab-pane hidden">
+                <h3 class="section-title">Список тестов</h3>
+                <div id="tests-list">
+                    <!-- Тесты будут загружены динамически -->
+                    <div class="notification">
+                        Загрузка списка тестов...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Конструктор тестов -->
+            <div id="builder-tab" class="tab-pane hidden">
+                <h3 class="section-title">Конструктор тестов</h3>
+                <div class="form-group">
+                    <label for="test-title">Название теста</label>
+                    <input type="text" id="test-title" class="form-control" placeholder="Введите название теста">
+                </div>
+                
+                <div id="questions-container">
+                    <div class="question-item">
+                        <div class="form-group">
+                            <label>Вопрос 1</label>
+                            <textarea class="form-control" placeholder="Текст вопроса"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Варианты ответов</label>
+                            <div class="answer-item">
+                                <input type="text" class="form-control" placeholder="Ответ 1">
+                                <input type="checkbox"> Правильный
+                            </div>
+                            <div class="answer-item">
+                                <input type="text" class="form-control" placeholder="Ответ 2">
+                                <input type="checkbox"> Правильный
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex gap-2 mt-3">
+                    <button class="btn btn-secondary" onclick="addQuestion()">Добавить вопрос</button>
+                    <button class="btn btn-success" onclick="saveTest()">Сохранить тест</button>
+                </div>
+            </div>
+
+            <!-- Генерация теста из текста -->
+            <div id="generate-tab" class="tab-pane hidden">
+                <h3 class="section-title">Генерация теста из текста</h3>
+                <div class="form-group">
+                    <label for="text-input">Введите текст или загрузите файл</label>
+                    <textarea id="text-input" class="form-control" placeholder="Вставьте текст здесь..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <div class="file-upload">
+                        <div class="file-upload-btn">
+                            <span id="text-file-name">Или выберите файл (PDF, DOC, TXT)</span>
+                        </div>
+                        <input type="file" id="text-file-input" class="file-upload-input" accept=".pdf,.doc,.docx,.txt">
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="evaluateText()">Оценить текст</button>
+                
+                <div id="evaluation-result" class="mt-4">
+                    <!-- Результат оценки будет здесь -->
+                </div>
+                
+                <div id="generation-section" class="hidden mt-4">
+                    <div class="notification success">
+                        Текст подходит для создания теста. Вы можете сгенерировать тест.
+                    </div>
+                    <button class="btn btn-success mt-3" onclick="generateTest()">Сгенерировать тест</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Конфигурация API
+        const API_URLS = {
+            AUTH: 'http://127.0.0.1:8000/auth',
+            REGISTER: 'http://127.0.0.1:8000/register',
+            DIGITIZE: 'http://127.0.0.1:8001/process-document',
+            GENERATE: 'http://your-test-generator/generate',
+            TESTS: 'http://your-backend/tests',
+            EVALUATE: 'http://your-backend/evaluate'
+        };
+
+        // Глобальные переменные
+        let authToken = null;
+        let currentUser = null;
+        let currentTestId = null;
+
+        // DOM элементы
+        const authSection = document.getElementById('auth-section');
+        const dashboard = document.getElementById('dashboard');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const tabs = document.querySelectorAll('.tab');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        const fileNameSpan = document.getElementById('file-name');
+        const textFileNameSpan = document.getElementById('text-file-name');
+        const fileInput = document.getElementById('file-input');
+        const textFileInput = document.getElementById('text-file-input');
+        const digitizedResult = document.getElementById('digitized-result');
+        const evaluationResult = document.getElementById('evaluation-result');
+        const generationSection = document.getElementById('generation-section');
+        const testsList = document.getElementById('tests-list');
+        const userAvatar = document.getElementById('user-avatar');
+        const userName = document.getElementById('user-name');
+        const userEmail = document.getElementById('user-email');
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            // Обработчики файлов
+            fileInput.addEventListener('change', (e) => {
+                fileNameSpan.textContent = e.target.files[0]?.name || 'Выберите файл';
+            });
+            
+            textFileInput.addEventListener('change', (e) => {
+                textFileNameSpan.textContent = e.target.files[0]?.name || 'Или выберите файл';
+            });
+            
+            // Обработчики вкладок
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Убрать активный класс со всех вкладок
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.add('hidden'));
+                    
+                    // Добавить активный класс текущей вкладке
+                    tab.classList.add('active');
+                    
+                    // Показать соответствующий контент
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.remove('hidden');
+                    
+                    // Загрузить тесты при переходе на вкладку
+                    if (tabId === 'tests') {
+                        loadTests();
+                    }
+                });
+            });
+        });
+
+        // Функции аутентификации
+        function showRegisterForm() {
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+        }
+
+        function showLoginForm() {
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+        }
+
+        async function register() {
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm-password').value;
+            
+            if (!email || !password) {
+                alert('Email и пароль обязательны!');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Пароли не совпадают!');
+                return;
+            }
+            
+            try {
+                const response = await fetch(API_URLS.REGISTER, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || 'Ошибка регистрации');
+                }
+                
+                alert('Регистрация успешна! Теперь вы можете войти');
+                showLoginForm();
+            } catch (error) {
+                alert(`Ошибка регистрации: ${error.message}`);
+            }
+        }
+
+        async function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch(API_URLS.AUTH, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.detail || 'Ошибка авторизации');
+                }
+                
+                const data = await response.json();
+                authToken = data.access_token;
+                currentUser = {
+                    email: email,
+                    name: email.split('@')[0]
+                };
+                
+                // Обновить UI
+                authSection.classList.add('hidden');
+                dashboard.classList.remove('hidden');
+                userAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+                userName.textContent = currentUser.name;
+                userEmail.textContent = currentUser.email;
+                
+            } catch (error) {
+                alert(`Ошибка авторизации: ${error.message}`);
+            }
+        }
+
+        function logout() {
+            authToken = null;
+            currentUser = null;
+            dashboard.classList.add('hidden');
+            authSection.classList.remove('hidden');
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        // Основные функции приложения
+        async function digitize() {
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Пожалуйста, выберите файл');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                const response = await fetch(API_URLS.DIGITIZE, {
+                    method: 'POST',
+                    headers: { 
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Ошибка оцифровки файла');
+                }
+                
+                const result = await response.json();
+                digitizedResult.innerHTML = `<div class="digitized-text">${result.text}</div>`;
+            } catch (error) {
+                alert(`Ошибка: ${error.message}`);
+                digitizedResult.innerHTML = '<div class="notification error">Ошибка при обработке файла</div>';
+            }
+        }
+
+        async function evaluateText() {
+            const text = document.getElementById('text-input').value;
+            if (!text) {
+                alert('Пожалуйста, введите текст');
+                return;
+            }
+            
+            try {
+                const response = await fetch(API_URLS.EVALUATE, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ text })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Ошибка оценки текста');
+                }
+                
+                const result = await response.json();
+                
+                if (result.suitable) {
+                    evaluationResult.innerHTML = `
+                        <div class="notification success">
+                            Текст подходит для создания теста! Длина: ${text.length} символов
+                        </div>
+                    `;
+                    generationSection.classList.remove('hidden');
+                } else {
+                    evaluationResult.innerHTML = `
+                        <div class="notification error">
+                            ${result.message || 'Текст не подходит для создания теста'}
+                        </div>
+                    `;
+                    generationSection.classList.add('hidden');
+                }
+            } catch (error) {
+                alert(`Ошибка: ${error.message}`);
+                evaluationResult.innerHTML = '<div class="notification error">Ошибка оценки текста</div>';
+            }
+        }
+
+        async function generateTest() {
+            const text = document.getElementById('text-input').value;
+            
+            try {
+                const response = await fetch(API_URLS.GENERATE, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({ text })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Ошибка генерации теста');
+                }
+                
+                const test = await response.json();
+                currentTestId = test.id;
+                
+                // Переключиться на конструктор тестов
+                tabs.forEach(t => t.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.add('hidden'));
+                
+                document.querySelector('[data-tab="builder"]').classList.add('active');
+                document.getElementById('builder-tab').classList.remove('hidden');
+                
+                // Загрузить сгенерированный тест в конструктор
+                loadTestIntoBuilder(test);
+                
+                // Показать уведомление
+                evaluationResult.innerHTML = `
+                    <div class="notification success">
+                        Тест успешно сгенерирован! Теперь вы можете его отредактировать.
+                    </div>
+                `;
+                
+            } catch (error) {
+                alert(`Ошибка: ${error.message}`);
+                evaluationResult.innerHTML = '<div class="notification error">Ошибка генерации теста</div>';
+            }
+        }
+
+        async function loadTests() {
+            try {
+                const response = await fetch(API_URLS.TESTS, {
+                    headers: { 
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Ошибка загрузки тестов');
+                }
+                
+                const tests = await response.json();
+                
+                if (tests.length === 0) {
+                    testsList.innerHTML = '<div class="notification">У вас пока нет тестов</div>';
+                    return;
+                }
+                
+                testsList.innerHTML = '';
+                tests.forEach(test => {
+                    const testElement = document.createElement('div');
+                    testElement.className = 'card';
+                    testElement.innerHTML = `
+                        <div class="card-header">
+                            <div class="card-title">${test.title}</div>
+                            <div class="card-actions">
+                                <button onclick="editTest('${test.id}')">✏️</button>
+                                <button onclick="deleteTest('${test.id}')">🗑️</button>
+                            </div>
+                        </div>
+                        <div>${test.questions.length} вопросов</div>
+                        <div>Создан: ${new Date(test.created_at).toLocaleDateString()}</div>
+                    `;
+                    testsList.appendChild(testElement);
+                });
+                
+            } catch (error) {
+                testsList.innerHTML = `
+                    <div class="notification error">
+                        Ошибка загрузки тестов: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function loadTestIntoBuilder(test) {
+            document.getElementById('test-title').value = test.title;
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+            
+            test.questions.forEach((question, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'question-item';
+                questionElement.innerHTML = `
+                    <div class="form-group">
+                        <label>Вопрос ${index + 1}</label>
+                        <textarea class="form-control" placeholder="Текст вопроса">${question.text}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Варианты ответов</label>
+                        <div id="answers-${index}"></div>
+                    </div>
+                `;
+                container.appendChild(questionElement);
+                
+                const answersContainer = document.getElementById(`answers-${index}`);
+                question.answers.forEach((answer, ansIndex) => {
+                    const answerElement = document.createElement('div');
+                    answerElement.className = 'answer-item';
+                    answerElement.innerHTML = `
+                        <input type="text" class="form-control" value="${answer.text}" placeholder="Ответ ${ansIndex + 1}">
+                        <input type="checkbox" ${answer.correct ? 'checked' : ''}> Правильный
+                    `;
+                    answersContainer.appendChild(answerElement);
+                });
+            });
+        }
+
+        function addQuestion() {
+            const container = document.getElementById('questions-container');
+            const count = container.children.length;
+            
+            const questionElement = document.createElement('div');
+            questionElement.className = 'question-item';
+            questionElement.innerHTML = `
+                <div class="form-group">
+                    <label>Вопрос ${count + 1}</label>
+                    <textarea class="form-control" placeholder="Текст вопроса"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Варианты ответов</label>
+                    <div class="answer-item">
+                        <input type="text" class="form-control" placeholder="Ответ 1">
+                        <input type="checkbox"> Правильный
+                    </div>
+                    <div class="answer-item">
+                        <input type="text" class="form-control" placeholder="Ответ 2">
+                        <input type="checkbox"> Правильный
+                    </div>
+                </div>
+            `;
+            container.appendChild(questionElement);
+        }
+
+        async function saveTest() {
+            const title = document.getElementById('test-title').value;
+            if (!title) {
+                alert('Введите название теста');
+                return;
+            }
+            
+            const questions = [];
+            const questionElements = document.querySelectorAll('.question-item');
+            
+            questionElements.forEach((qElement, index) => {
+                const text = qElement.querySelector('textarea').value;
+                const answers = [];
+                
+                qElement.querySelectorAll('.answer-item').forEach(aElement => {
+                    const answerText = aElement.querySelector('input[type="text"]').value;
+                    const correct = aElement.querySelector('input[type="checkbox"]').checked;
+                    answers.push({ text: answerText, correct });
+                });
+                
+                questions.push({ text, answers });
+            });
+            
+            const testData = {
+                id: currentTestId,
+                title,
+                questions
+            };
+            
+            try {
+                const method = currentTestId ? 'PUT' : 'POST';
+                const url = currentTestId ? `${API_URLS.TESTS}/${currentTestId}` : API_URLS.TESTS;
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Ошибка сохранения теста');
+                }
+                
+                alert('Тест успешно сохранен!');
+                loadTests(); // Обновить список тестов
+                
+            } catch (error) {
+                alert(`Ошибка сохранения теста: ${error.message}`);
+            }
+        }
+
+        function editTest(testId) {
+            // Здесь должна быть реализация загрузки теста из API
+            // Для примера создадим тест-заглушку
+            const test = {
+                id: testId,
+                title: `Тест ${testId}`,
+                questions: [
+                    {
+                        text: "Какой язык программирования вы изучаете?",
+                        answers: [
+                            { text: "JavaScript", correct: true },
+                            { text: "Python", correct: false },
+                            { text: "Java", correct: false }
+                        ]
+                    }
+                ]
+            };
+            
+            currentTestId = testId;
+            
+            // Переключиться на конструктор
+            tabs.forEach(t => t.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.add('hidden'));
+            
+            document.querySelector('[data-tab="builder"]').classList.add('active');
+            document.getElementById('builder-tab').classList.remove('hidden');
+            
+            // Загрузить тест в конструктор
+            loadTestIntoBuilder(test);
+        }
+
+        async function deleteTest(testId) {
+            if (!confirm('Вы уверены, что хотите удалить этот тест?')) return;
+            
+            try {
+                const response = await fetch(`${API_URLS.TESTS}/${testId}`, {
+                    method: 'DELETE',
+                    headers: { 
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Ошибка удаления теста');
+                }
+                
+                loadTests(); // Обновить список тестов
+                
+            } catch (error) {
+                alert(`Ошибка удаления теста: ${error.message}`);
+            }
+        }
+        // Добавьте в конец скрипта
+document.getElementById('text-input').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+});
+    </script>
+</body>
+</html>
