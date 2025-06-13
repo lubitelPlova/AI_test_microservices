@@ -1,4 +1,4 @@
-### Запуск
+![image2](https://github.com/user-attachments/assets/c483aaa9-3989-4f84-8243-8d050566a61f)### Запуск
 Запуск через docker compose. Находясь в корневой папке проекта, необходимо выполнить. 
 ``` docker
 docker compose up --build
@@ -12,3 +12,25 @@ ocr_microservice - localhost:8001
 llm_microservice - localhost:8002
 ```
 Документация API находится на /docs 
+
+### Примеры работы
+
+#### Экран авторизации
+![image](https://github.com/user-attachments/assets/ce317b46-fd3f-4309-a2c0-ac1e3b7aa8d3)
+
+#### Генерация тестов
+![image](https://github.com/user-attachments/assets/983a403f-a565-4603-97df-8d339801f054)
+
+#### Конструктов тестов
+![image](https://github.com/user-attachments/assets/eec4724e-5d2e-41ef-8375-95f447d34d54)
+
+#### Прохождение тестов
+![image](https://github.com/user-attachments/assets/1f51515c-7dc3-450f-bde6-ca5173597148)
+
+#### Пример работы OCR
+Исходник
+![image2](https://github.com/user-attachments/assets/646a6b9c-d709-48cd-b6a0-c75051d8c2ba)
+
+Результат
+![image](https://github.com/user-attachments/assets/19443eec-904a-424a-985c-1ffdf478f58e)
+
