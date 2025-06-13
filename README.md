@@ -1,4 +1,4 @@
-![image2](https://github.com/user-attachments/assets/c483aaa9-3989-4f84-8243-8d050566a61f)### Запуск
+### Запуск
 Запуск через docker compose. Находясь в корневой папке проекта, необходимо выполнить. 
 ``` docker
 docker compose up --build
