@@ -1,5 +1,5 @@
 ### Запуск
-Запуск через docker compose 
+Запуск через docker compose. Находясь в корневой папке проекта, необходимо выполнить. 
 ``` docker
 docker compose up --build
 ```
