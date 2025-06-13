@@ -2,3 +2,6 @@ __pycache__
 *.pyc
 auth_service_venv
 venv/
+.idea
+alembic
+alembic.ini

@@ -22,6 +22,8 @@ def authenticate_user(db, email: str, password: str):
         return False
     return user
 
+
+
 def get_current_user(db, token: str):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,

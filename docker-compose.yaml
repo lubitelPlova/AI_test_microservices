@@ -1,0 +1,58 @@
+version: '3.8'
+
+# Сетевые настройки
+networks:
+  laba-network:
+    driver: bridge
+
+# Сервисы
+services:
+  # Фронтенд (Nginx + SPA)
+  frontend:
+    build: ./some_frontend
+    ports:
+      - "80:80"
+    networks:
+      - laba-network
+    depends_on:
+      - main_ms
+      - ocr_ms
+      - llm_ms
+
+  # Основной микросервис (Auth/DB)
+  main_ms:
+    build: ./osmotr-auth-service-master
+    ports:
+      - "8000:8000"
+    networks:
+      - laba-network
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # OCR микросервис
+  ocr_ms:
+    build: ./ocr_app
+    ports:
+      - "8001:8000"
+    networks:
+      - laba-network
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # LLM микросервис
+  llm_ms:
+    build: ./llm-service-main
+    ports:
+      - "8002:8000"
+    networks:
+      - laba-network
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Раскомментировать для GPU:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]

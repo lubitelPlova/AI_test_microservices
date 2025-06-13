@@ -2,3 +2,6 @@ __pycache__
 .git
 *.log
 .env
+.idea
+.venv
+

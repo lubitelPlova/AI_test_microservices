@@ -26,7 +26,8 @@ class QuestionItem(BaseModel):
         return v
 
 class QuestionResponse(BaseModel):
-    data: list[QuestionItem]
+    title: str
+    questions: list[QuestionItem]
 
 class LLMResponse(BaseModel):
     result: str

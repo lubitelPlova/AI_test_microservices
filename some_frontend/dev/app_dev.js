@@ -1,12 +1,12 @@
 // Конфигурация API
 const API_URLS = {
-    AUTH: 'api/auth/auth',
-    VERIFY: 'api/auth/verify',
-    REGISTER: 'api/auth/register',
-    DIGITIZE: 'api/ocr/process-document',
-    GENERATE: 'api/llm/api/v1/extract_test',
-    TESTS: 'api/auth/tests',
-    EVALUATE: 'api/llm/api/v1/check_text'
+    AUTH: 'http://127.0.0.1:8000/auth',
+    VERIFY: 'http://127.0.0.1:8000/verify',
+    REGISTER: 'http://127.0.0.1:8000/register',
+    DIGITIZE: 'http://127.0.0.1:8001/process-document',
+    GENERATE: 'http://127.0.0.1:8002/api/v1/extract_test',
+    TESTS: 'http://127.0.0.1:8000/tests',
+    EVALUATE: 'http://127.0.0.1:8002/api/v1/check_text'
 };
 
 // Глобальные переменные

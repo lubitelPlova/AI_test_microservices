@@ -5,12 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac9db673-b839-464c-8a3f-e74e0ab580e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../data_service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../data_service/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/llm-service-main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../osmotr-auth-service-master/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/.idea/data_service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data_service/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schemas/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/response.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prompts/extract_prompt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/prompts/extract_prompt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scipt.bash" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ocr_app/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../ocr_app/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ocr_app/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../ocr_app/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ocr_app/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ocr_app/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/../osmotr-auth-service-master/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../osmotr-auth-service-master/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/app/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../osmotr-auth-service-master/app/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/app/crud.py" beforeDir="false" afterPath="$PROJECT_DIR$/../osmotr-auth-service-master/app/crud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../osmotr-auth-service-master/app/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../osmotr-auth-service-master/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/app/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/../osmotr-auth-service-master/app/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/test" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osmotr-auth-service-master/test.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../some_frontend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../some_frontend/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../some_frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../some_frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../some_frontend/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../some_frontend/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
