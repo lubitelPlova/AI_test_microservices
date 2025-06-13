@@ -14,7 +14,6 @@ llm_microservice - localhost:8002
 Документация API находится на /docs 
 
 ### Примеры работы
-
 #### Экран авторизации
 ![image](https://github.com/user-attachments/assets/ce317b46-fd3f-4309-a2c0-ac1e3b7aa8d3)
 
@@ -23,6 +22,10 @@ llm_microservice - localhost:8002
 
 #### Конструктов тестов
 ![image](https://github.com/user-attachments/assets/eec4724e-5d2e-41ef-8375-95f447d34d54)
+
+#### Конструктов тестов
+![image](https://github.com/user-attachments/assets/d3f2f819-89d9-49e4-a4a1-547859c03058)
+
 
 #### Прохождение тестов
 ![image](https://github.com/user-attachments/assets/1f51515c-7dc3-450f-bde6-ca5173597148)
